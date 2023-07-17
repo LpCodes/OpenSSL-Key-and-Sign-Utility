@@ -1,4 +1,3 @@
-Sure! Here's a sample README file for your OpenSSL Key and Sign Utility:
 
 # OpenSSL Key and Sign Utility
 
