@@ -3,6 +3,8 @@
 
 The OpenSSL Key and Sign Utility is a Python script that provides a graphical user interface (GUI) for generating RSA key pairs, signing files, and verifying signatures using the OpenSSL command-line tool.
 
+![Alt text](image.png)
+
 ## Prerequisites
 
 Before using this utility, make sure you have the following prerequisites installed on your system:
