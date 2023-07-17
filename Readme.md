@@ -43,8 +43,6 @@ To run the OpenSSL Key and Sign Utility, follow these steps:
 
 5. After performing the desired operation, a popup message will appear indicating the status of the operation (success or failure). Additionally, the output window at the bottom of the GUI will display any error messages or output from the OpenSSL commands.
 
-6. Close the utility by closing the GUI window or pressing Ctrl+C in the terminal or command prompt.
-
 
 ## Contributing
 
