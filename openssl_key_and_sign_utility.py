@@ -16,10 +16,28 @@ def generate_keys(private_key_dir, public_key_dir):
         bool or str: True if successful, error message if failed.
     """
     try:
-        # (same as your original code)
+        private_key_file = os.path.join(private_key_dir, "private_key.pem")
+        public_key_file = os.path.join(public_key_dir, "public_key.pem")
+        subprocess.run(
+            ["openssl", "genpkey", "-algorithm", "RSA", "-out", private_key_file],
+            check=True,
+        )
+        subprocess.run(
+            [
+                "openssl",
+                "pkey",
+                "-in",
+                private_key_file,
+                "-pubout",
+                "-out",
+                public_key_file,
+            ],
+            check=True,
+        )
         return True
     except subprocess.CalledProcessError as e:
         return str(e.stderr)  # Return error message
+
 
 # Function to sign a file
 def sign_file(file_to_sign, signature_file, private_key_file):
@@ -35,10 +53,23 @@ def sign_file(file_to_sign, signature_file, private_key_file):
         bool or str: True if successful, error message if failed.
     """
     try:
-        # (same as your original code)
+        subprocess.run(
+            [
+                "openssl",
+                "dgst",
+                "-sha256",
+                "-sign",
+                private_key_file,
+                "-out",
+                signature_file,
+                file_to_sign,
+            ],
+            check=True,
+        )
         return True
     except subprocess.CalledProcessError as e:
         return str(e.stderr)  # Return error message
+
 
 # Function to verify a signature
 def verify_signature(public_key_file, signature_file_to_verify, file_to_verify):
@@ -54,7 +85,20 @@ def verify_signature(public_key_file, signature_file_to_verify, file_to_verify):
         bool or str: True if the verification is successful, error message if failed.
     """
     try:
-        # (same as your original code)
+        result = subprocess.run(
+            [
+                "openssl",
+                "dgst",
+                "-sha256",
+                "-verify",
+                public_key_file,
+                "-signature",
+                signature_file_to_verify,
+                file_to_verify,
+            ],
+            capture_output=True,
+            check=True,
+        )
         return result.returncode == 0
     except subprocess.CalledProcessError as e:
         return str(e.stderr)  # Return error message
@@ -89,7 +133,8 @@ layout = [
 ]
 
 # Create the window
-window = sg.Window("OpenSSL Key and Sign Utility", layout)
+window = sg.Window("OpenSSL Key and Sign Utility", layout,finalize=True)
+
 
 # Event loop
 while True:
