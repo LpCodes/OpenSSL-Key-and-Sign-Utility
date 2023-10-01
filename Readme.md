@@ -47,3 +47,6 @@ To run the OpenSSL Key and Sign Utility, follow these steps:
 ## Contributing
 
 Contributions to this utility are welcome! If you find any issues or have suggestions for improvements, please feel free to submit a pull request or open an issue.
+
+## See also
+[List of cryptography GUI tools](https://gist.github.com/stokito/eea7ee50d51e1db30122e2e33a62723e)
